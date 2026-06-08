@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="GorevApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GorevApp"
+    FlyoutBehavior="Flyout"
+    Title="GorevApp"
+    BackgroundImageSource="bg.png">
+
+    <FlyoutItem Title="Görevler" Icon="home.png">
+        <Tab Title="Hepsi">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="AllTasks" />
+        </Tab>
+        <Tab Title="İş">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="WorkTasks" />
+        </Tab>
+    </FlyoutItem>
+
+    <MenuItem Text="Tamamlanan Görevler" Command="{Binding GoToCompletedCommand}" IconImageSource="completed.png" />
+    <MenuItem Text="Süresi Geçmiş" Command="{Binding GoToOverdueCommand}" IconImageSource="late.png" />
+    <MenuItem Text="Yeni Görev Ekle" Command="{Binding AddNewTaskCommand}" IconImageSource="newtask.png" />
+
+</Shell>
