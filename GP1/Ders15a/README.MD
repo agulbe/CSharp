@@ -1,22 +1,19 @@
 # Ders15a
 
-Bu proje, güncel saati rakam görselleriyle gösteren basit dijital saat uygulamasıdır.
-
 ## Görev
 
-- Timer ile zamanı periyodik olarak güncellemek.
-- Güncel saati `HHmm` biçiminde okumak.
-- Saatin her basamağını rakam görselleriyle form üzerinde göstermek.
-- Dakika/saat değişiminde eski görselleri kaldırıp yenilerini eklemek.
+Bu proje, metin işleme metotlarını gösteren bir Windows Forms örneğidir.
 
-## Not
+## İşlenen konular
 
-Kodda `D:\Resim\Rakam\*.png` yolları kullanılıyor. Dijital saat görsellerinin çalışması için bu dosyaların mevcut olması gerekir.
+- `TextBox.TextChanged` olayında metin uzunluğunu hesaplama.
+- `Trim`, `TrimStart`, `TrimEnd` ile boşluk temizleme kavramını gösterme.
+- `Remove`, `Replace`, `Substring`, `ToUpper`, `ToLower` gibi string metotlarını örnekleme.
+- `Contains("@")` ile metnin e-posta adresi olma ihtimalini kontrol etme.
+- Sonuçları `Label` üzerinde çok satırlı olarak gösterme.
 
-## Teknolojiler
+## Kullanılan kontroller
 
-- C#
-- .NET Windows Forms
-- Timer
-- Dinamik `PictureBox` oluşturma
+- `Label` (`label1`, `lblMetin`)
+- `TextBox` (`txtMetin`)
 

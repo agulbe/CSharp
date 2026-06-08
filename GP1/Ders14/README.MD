@@ -1,23 +1,23 @@
 # Ders14
 
-Bu proje, SQL Server'dan fatura verilerini okuyup `DataGridView` üzerinde gösteren Windows Forms uygulamasıdır.
-
 ## Görev
 
-- `invoicedb` veritabanındaki `Invoices` tablosundan fatura kayıtlarını okumak.
-- Kayıtları `Invoice` modeli ve `InvoiceStatus` enum'u ile temsil etmek.
-- Faturaları `DataGridView` kontrolüne bağlamak.
-- Tabloda seçilen faturanın detaylarını form alanlarına aktarmak.
+Bu proje, CSV dosyasından öğrenci kayıtlarını okuyup liste ve metin alanlarında gösterir.
+
+## İşlenen konular
+
+- `File.ReadAllLines` ile dosya satırlarını okuma.
+- CSV satırlarını `Split(';')` ile parçalara ayırma.
+- Başlık satırını atlayarak öğrenci adlarını `ListBox` içine ekleme.
+- CSV içeriğini tab karakterleri ve satır sonlarıyla çok satırlı metin olarak gösterme.
 
 ## Not
 
-Bağlantı dizesi yerel SQL Server için ayarlanmıştır: `(local)`, `invoicedb` veritabanı ve `Invoices` tablosu gerekir.
+Kodda `D:\Code\ogrenci.csv` dosya yolu kullanılır. Uygulamanın çalışması için bu dosyanın mevcut olması gerekir.
 
-## Teknolojiler
+## Kullanılan kontroller
 
-- C#
-- .NET Windows Forms
-- Microsoft.Data.SqlClient
-- SQL Server
-- `DataGridView`
+- `Label` (`label1`)
+- `TextBox` (`txtMetin`, `lblMetin`)
+- `ListBox` (`lstMetin`)
 

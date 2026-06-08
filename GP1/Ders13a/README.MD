@@ -1,22 +1,26 @@
 # Ders13a
 
-Bu proje, özel `PictureBox` sınıfı ile dinamik resim kutuları oluşturma örneğidir.
-
 ## Görev
 
-- Kullanıcının seçtiği sayıya göre formda resim kutularından oluşan bir ızgara oluşturmak.
-- `ResimKutusu` sınıfında satır, sütun ve kimlik bilgisi tutmak.
-- Resim kutusuna tıklanınca kimliğe göre öğrenci resmini yüklemek.
-- Oluşturulan dinamik kontrolleri temizlemek.
+Bu proje, resim dosyası açma ve `PictureBox` üzerinde görüntüleme örneğidir.
+
+## İşlenen konular
+
+- Form yüklenirken varsayılan resmi `Image.FromFile` ile yükleme.
+- `PictureBox.SizeMode` değerini `StretchImage` olarak ayarlama.
+- `OpenFileDialog` ile resim dosyası seçme.
+- Dosya filtreleriyle `.jpg`, `.png`, `.gif` ve `.bmp` uzantılarını sınırlandırma.
+- Seçilen dosya yolunu `TextBox` içinde gösterme.
+- Seçilen resmi `PictureBox.Image` özelliğine atama.
 
 ## Not
 
-Kodda `D:\Resim\Simge\user.png` ve `D:\Resim\Ogrenci\{id}.png` yolları kullanılıyor. Resimlerin görüntülenmesi için bu dosyaların mevcut olması gerekir.
+Varsayılan resim yolu `D:\Resim\Portre\noao0107a.jpg` olarak sabit yazılmıştır.
 
-## Teknolojiler
+## Kullanılan kontroller
 
-- C#
-- .NET Windows Forms
-- Dinamik kontrol oluşturma
-- Özel `PictureBox` sınıfı
+- `PictureBox` (`pictureBox1`)
+- `OpenFileDialog` (`openFileDialog1`)
+- `TextBox` (`txtDosya`)
+- `Button` (`button1`)
 

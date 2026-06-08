@@ -1,16 +1,20 @@
 # Ders02
 
-Bu proje, seçilen yazıcının desteklediği kağıt boyutlarını ve baskı kalitelerini gösterir.
-
 ## Görev
 
-- Sistemde yüklü yazıcıları listelemek.
-- Varsayılan yazıcıyı otomatik seçmek.
-- Seçili yazıcıya ait kağıt boyutlarını ve yazdırma çözünürlüklerini listelemek.
+Bu proje, iki sayıyı toplayan basit Windows Forms hesaplama uygulamasıdır.
 
-## Teknolojiler
+## İşlenen konular
 
-- C#
-- .NET Windows Forms
-- `System.Drawing.Printing`
+- `TextBox` kontrollerinden kullanıcı girişi alma.
+- `Convert.ToDouble` ile metni sayıya dönüştürme.
+- Parametre alan ve değer döndüren metot yazma (`Topla`).
+- Hesap sonucunu `Label` üzerinde gösterme.
+- Model klasöründe sınıf, arayüz, struct ve enum tanımlama örnekleri.
+
+## Kullanılan kontroller
+
+- `Label` (`label1`, `label2`, `lblSonuc`)
+- `TextBox` (`txtSayi1`, `txtSayi2`)
+- `Button` (`btnHesap`)
 

@@ -1,16 +1,18 @@
 # Ders01
 
-Bu proje, Windows Forms ile temel yazdırma işlemini gösterir.
-
 ## Görev
 
-- Sistemde yüklü yazıcıları listelemek.
-- Kullanıcının seçtiği yazıcıya `PrintDocument` ile çıktı göndermek.
-- Yazdırma sırasında sayfaya "Merhaba, Yazıcı!" metnini çizmek.
+Bu proje, Windows Forms içinde `MessageBox.Show` metodunun temel kullanımını gösterir.
 
-## Teknolojiler
+## İşlenen konular
 
-- C#
-- .NET Windows Forms
-- `System.Drawing.Printing`
+- Uygulama başlangıcında `Form2` formunu açma.
+- Buton tıklama olayını (`Button.Click`) kullanma.
+- `MessageBox.Show` ile mesaj metni ve başlık gösterme.
+- `MessageBoxButtons.AbortRetryIgnore` ile mesaj kutusuna özel düğmeler ekleme.
+- `MessageBoxIcon.Error` ile hata simgesi gösterme.
+
+## Kullanılan kontroller
+
+- `Button` (`button1`)
 

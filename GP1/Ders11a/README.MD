@@ -1,17 +1,19 @@
 # Ders11a
 
-Bu proje, birden fazla dosyayı sürükle-bırak ile listeleme ve seçilen dosyanın içeriğini görüntüleme örneğidir.
-
 ## Görev
 
-- `ListBox` kontrolüne dosya sürüklenmesini kabul etmek.
-- Bırakılan dosya yollarını listelemek.
-- Listeden seçilen dosyanın içeriğini `TextBox` içinde göstermek.
+Bu proje, `DateTimePicker` ile seçilen tarihin parçalarını görüntüleme örneğidir.
 
-## Teknolojiler
+## İşlenen konular
 
-- C#
-- .NET Windows Forms
-- Drag and drop
-- Dosya okuma işlemleri
+- `DateTimePicker.ValueChanged` olayını kullanma.
+- Seçilen tarihten yıl, ay, gün, haftanın günü, yılın günü ve saat bilgilerini alma.
+- `DateTimePicker.Value` üzerinden `Year`, `Month`, `Day`, `DayOfWeek`, `DayOfYear`, `TimeOfDay`, `Hour`, `Minute`, `Second` özelliklerini okuma.
+- Tarih biçimini `DateTimePickerFormat.Long` olarak değiştirme.
+- Tarih bilgilerini çok satırlı `Label` metni olarak gösterme.
+
+## Kullanılan kontroller
+
+- `Label` (`label1`, `lblDogum`)
+- `DateTimePicker` (`dateTimePicker1`)
 

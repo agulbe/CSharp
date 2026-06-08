@@ -1,17 +1,20 @@
 # Ders05
 
-Bu proje, metin dosyası açma ve satır numaralı şekilde yazdırma uygulamasıdır.
-
 ## Görev
 
-- `.txt`, `.cs`, `.htm`, `.html` ve `.css` dosyalarını açmak.
-- Dosya satırlarını dört basamağa hizalanmış satır numaralarıyla `TextBox` içine aktarmak.
-- Yazdırma sırasında sayfa yüksekliği, kenar boşlukları ve satır yüksekliğine göre çok sayfalı çıktı üretmek.
+Bu proje, `ComboBox` ile eğitim düzeyi seçme ve listeye yeni öğe ekleme örneğidir.
 
-## Teknolojiler
+## İşlenen konular
 
-- C#
-- .NET Windows Forms
-- `OpenFileDialog`
-- `PrintDocument`
+- `ComboBox.SelectedIndex` ile varsayılan seçim yapma.
+- `SelectedIndexChanged` olayında seçilen öğeyi okuma.
+- Seçilen eğitim düzeyini `Label` üzerinde gösterme.
+- `ComboBox.Items.Contains` ile tekrar eden öğeyi engelleme.
+- Kullanıcının yazdığı değeri `ComboBox.Items.Add` ile listeye ekleme.
+
+## Kullanılan kontroller
+
+- `Label` (`label1`, `label2`)
+- `ComboBox` (`cboEgitim`)
+- `Button` (`btnEkle`)
 
