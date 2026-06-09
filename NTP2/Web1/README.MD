@@ -29,3 +29,5 @@ Bu projede kodun ana fikri, veriyi ve davranisi ilgili siniflar icinde toplamak 
 ```bash
 dotnet run --project "Web1\Web1.csproj"
 ```
+## Not
+Bu projede wwwroot/lib altindaki vendor dosyalari repo boyutunu kucultmek icin kaldirilmistir. Bootstrap, jQuery ve dogrulama kutuphaneleri calisma aninda CDN uzerinden yuklenir.
