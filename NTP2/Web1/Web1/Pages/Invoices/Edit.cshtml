@@ -1,0 +1,175 @@
+﻿@page
+@model Web1.Pages.Invoices.EditModel
+@{
+}
+
+<h2 class="text-center mb-3"> Fatura Bilgilerini Güncelle</h2>
+
+@if (Model.SuccessMessage.Length > 0)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>
+            @Model.SuccessMessage
+        </strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+
+
+<form method="post">
+    
+    <div class="row g-2 mb-3">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header"> : : Fatura Detayları </div>
+                <div class="card-body">
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Invoice Id</label>
+                        <div class="col-sm-8">
+                            <input class="form-control-plaintext" readonly value="@Model.invoice.Id" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Fatura No. </label>
+                        <div class="col-sm-8">
+                            <input readonly asp-for="InvoiceDto.Number" class="form-control" />
+                            <span asp-validation-for="InvoiceDto.Number" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Ödeme Durumu</label>
+                        <div class="col-sm-8">
+                            <select class="form-select" asp-for="InvoiceDto.Status">
+                                <option value="Pending">Pending</option>
+                                <option value="Paid">Paid</option>
+                            </select>
+                            <span asp-validation-for="InvoiceDto.Status" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Fatura Tarihi </label>
+                        <div class="col-sm-8">
+                            <input type="date" asp-for="InvoiceDto.IssueDate" class="form-control" />
+                            <span asp-validation-for="InvoiceDto.IssueDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Ödeme Tarihi </label>
+                        <div class="col-sm-8">
+                            <input type="date" asp-for="InvoiceDto.DueDate" class="form-control" />
+                            <span asp-validation-for="InvoiceDto.DueDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+                     
+            </div>
+        </div>
+                
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header"> : : Müşteri Detayları </div>
+                <div class="card-body">
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Müşteri Adı </label>
+                        <div class="col-sm-8">
+                            <input asp-for="InvoiceDto.ClientName" class="form-control" />
+                            <span asp-validation-for="InvoiceDto.ClientName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> E-posta</label>
+                        <div class="col-sm-8">
+                            <input asp-for="InvoiceDto.Email" class="form-control" />
+                            <span asp-validation-for="InvoiceDto.Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Telefon </label>
+                        <div class="col-sm-8">
+                            <input asp-for="InvoiceDto.Phone" class="form-control" />
+                            <span asp-validation-for="InvoiceDto.Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Adres </label>
+                        <div class="col-sm-8">
+                            <textarea asp-for="InvoiceDto.Address" class="form-control"></textarea>
+                            <span asp-validation-for="InvoiceDto.Address" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header"> : : Hizmet Detayları </div>
+        <div class="card-body">
+
+            <div class="row g-2">
+
+                <div class="col-lg-6">
+                    <label class="form-label"> Hizmet </label>
+                    <input class="form-control" asp-for="InvoiceDto.Service" />
+                    <span asp-validation-for="InvoiceDto.Service" class="text-danger"></span>
+                </div>
+
+                <div class="col-lg-2 col-sm-4">
+                    <label class="form-label"> Miktar </label>
+                    <input class="form-control" asp-for="InvoiceDto.Quantity" id="quantityInput" oninput="updateTotalPrice()" />
+                    <span asp-validation-for="InvoiceDto.Quantity" class="text-danger"></span>
+                </div>
+
+                <div class="col-lg-2 col-sm-4">
+                    <label class="form-label"> Birim Fiyat </label>
+                    <input class="form-control" asp-for="InvoiceDto.UnitPrice" id="unitPriceInput" oninput="updateTotalPrice()" />
+                    <span asp-validation-for="InvoiceDto.UnitPrice" class="text-danger"></span>
+                </div>
+
+                <div class="col-lg-2 col-sm-4">
+                    <label class="form-label"> Tutar </label>
+                    <input class="form-control" disabled id="totalPriceInput" />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-2"> Save Changes </button>
+    <a class="btn btn-outline-primary" asp-page="/Invoices/Index" role="button"> Cancel </a>
+
+</form>
+
+<script>
+    function updateTotalPrice(){
+        let quantity = document.getElementById("quantityInput").value;
+        // let unitPrice = document.getElementById("unitPriceInput").value;
+        let unitPrice = parseFloat(document.getElementById("unitPriceInput").value.replace(",", "."));
+        if(isNaN(quantity) || isNaN(unitPrice)){
+            document.getElementById("totalPriceInput").value="0";
+        } else {
+            let totalPrice = quantity * unitPrice;
+            document.getElementById("totalPriceInput").value=totalPrice;
+        }
+    }
+
+    updateTotalPrice();
+
+</script>

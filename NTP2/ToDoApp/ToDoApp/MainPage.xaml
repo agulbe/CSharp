@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TodoApp.ViewModels"
+             x:Class="TodoApp.MainPage"
+             Title="ToDo Uygulaması">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Tümü" Command="{Binding ShowAllCommand}" />
+        <ToolbarItem Text="Gecikenler" Command="{Binding ShowOverdueCommand}" />
+        <ToolbarItem Text="Tamamlananlar" Command="{Binding ShowCompletedCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="15">
+
+        <!-- Kategori Bölümü -->
+        <VerticalStackLayout Grid.Row="0" Spacing="5">
+            <Label Text="Kategoriler" FontAttributes="Bold" FontSize="16"/>
+            <CollectionView ItemsSource="{Binding Categories}" HeightRequest="120">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto,Auto" Padding="5">
+                            <Label Text="{Binding Name}" VerticalOptions="Center"/>
+                            <Button Grid.Column="1" Text="Filtrele" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=FilterByCategoryCommand}"
+                                    CommandParameter="{Binding .}"
+                                    FontSize="12"/>
+                            <Button Grid.Column="2" Text="Sil" 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteCategoryCommand}"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="Red" FontSize="12"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Entry x:Name="CategoryEntry" Placeholder="Yeni kategori adı..."/>
+            <Button Text="Kategori Ekle" 
+                    Command="{Binding AddCategoryCommand}"
+                    CommandParameter="{Binding Source={x:Reference CategoryEntry}, Path=Text}"/>
+        </VerticalStackLayout>
+
+        <!-- Yeni Görev Ekleme -->
+        <VerticalStackLayout Grid.Row="1" Spacing="5" Margin="0,15">
+            <Label Text="Yeni Görev" FontAttributes="Bold" FontSize="16"/>
+            <Entry Placeholder="Görev adı" Text="{Binding NewItemName}"/>
+            <Entry Placeholder="Detaylar" Text="{Binding NewItemDetails}"/>
+            <DatePicker Date="{Binding NewItemDueDate}"/>
+            <Picker Title="Kategori Seç" 
+                    ItemsSource="{Binding Categories}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCategory}"/>
+            <Button Text="Görev Ekle" Command="{Binding AddItemCommand}"/>
+        </VerticalStackLayout>
+
+        <!-- Filtre Bilgisi -->
+        <Label Grid.Row="2" Text="Görev Listesi" FontAttributes="Bold" Margin="0,10"/>
+
+        <!-- Görev Listesi -->
+        <CollectionView Grid.Row="3" ItemsSource="{Binding ToDoItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="#DDDDDD" StrokeThickness="1" Margin="0,5" Padding="10">
+                        <Grid ColumnDefinitions="*,Auto,Auto">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Details}" FontSize="12" TextColor="Gray"/>
+                                <Label FontSize="12">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}Kategori: {0} | Son Tarih: {1:dd.MM.yyyy}">
+                                            <Binding Path="CategoryName"/>
+                                            <Binding Path="DueDate"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                                <Label Text="{Binding FinishedDate, StringFormat='Tamamlanma: {0:dd.MM.yyyy HH:mm}'}" 
+                                       FontSize="11" TextColor="Green"
+                                       IsVisible="{Binding IsFinished}"/>
+                            </VerticalStackLayout>
+
+                            <Button Grid.Column="1" 
+                                    Text="{Binding IsFinished, Converter={StaticResource BoolToCompleteTextConverter}}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=ToggleCompleteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Margin="5,0"/>
+
+                            <Button Grid.Column="2" Text="Sil" 
+                                    BackgroundColor="Red"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteItemCommand}"
+                                    CommandParameter="{Binding .}"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

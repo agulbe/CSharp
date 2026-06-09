@@ -1,0 +1,42 @@
+﻿
+@page
+@model Web1.Pages.Invoices.IndexModel
+@{
+}
+
+<h1>Faturalar</h1>
+<a class="btn btn-primary" asp-page="/Invoices/Create">Yeni Fatura Ekle</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fatura No.</th>
+            <th>Durum</th>
+            <th>Müşteri</th>
+            <th>Tutar</th>
+            <th>Fatura Tarihi</th>
+            <th>Teslim Tarihi</th>
+            <th>Eylemler</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        @foreach (var invoice in Model.invoiceList)
+        {
+            <tr>
+                <td>@invoice.Id</td>
+                <td>@invoice.Number</td>
+                <td>@invoice.Status</td>
+                <td>@invoice.ClientName</td>
+                <td>@(invoice.UnitPrice * invoice.Quantity) $</td>
+                <td>@invoice.IssueDate</td>
+                <td>@invoice.DueDate</td>
+                <td style="white-space:nowrap">
+                    <a class="btn btn-secondary" asp-page="/Invoices/Details" asp-route-id="@invoice.Id">Detay</a>
+                    <a class="btn btn-primary" asp-page="/Invoices/Edit" asp-route-id="@invoice.Id">Düzenle</a>
+                    <a class="btn btn-danger" asp-page="/Invoices/Delete" asp-route-id="@invoice.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

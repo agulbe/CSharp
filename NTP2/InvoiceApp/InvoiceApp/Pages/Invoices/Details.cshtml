@@ -1,0 +1,146 @@
+﻿@page
+@model InvoiceApp.Pages.Invoices.DetailsModel
+@{
+}
+
+<h2 class="text-center mb-3">Invoice Details</h2>
+
+<form method="post">
+    
+    <div class="row g-2 mb-3">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header"> : : Invoice Details </div>
+                <div class="card-body">
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Invoice Id</label>
+                        <div class="col-sm-8">
+                            <input class="form-control-plaintext" readonly value="@Model.Invoice.Id" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Invoice Number</label>
+                        <div class="col-sm-8">
+                            <input asp-for="Invoice.Number" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Payment Status</label>
+                        <div class="col-sm-8">
+                            <input asp-for="Invoice.Status" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Issue Date</label>
+                        <div class="col-sm-8">
+                            <input type="date" asp-for="Invoice.IssueDate" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Due Date</label>
+                        <div class="col-sm-8">
+                            <input type="date" asp-for="Invoice.DueDate" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                </div>
+                     
+            </div>
+        </div>
+                
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header"> : : Client Details </div>
+                <div class="card-body">
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Client Name</label>
+                        <div class="col-sm-8">
+                            <input asp-for="Invoice.ClientName" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Email</label>
+                        <div class="col-sm-8">
+                            <input asp-for="Invoice.Email" class="form-control" readonly />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Phone</label>
+                        <div class="col-sm-8">
+                            <input asp-for="Invoice.Phone" class="form-control" readonly/>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"> Address</label>
+                        <div class="col-sm-8">
+                            <textarea asp-for="Invoice.Address" class="form-control" readonly></textarea>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header"> : : Services Details </div>
+        <div class="card-body">
+
+            <div class="row g-2">
+
+                <div class="col-lg-6">
+                    <label class="form-label">Service</label>
+                    <input class="form-control" asp-for="Invoice.Service" readonly />
+                </div>
+
+                <div class="col-lg-2 col-sm-4">
+                    <label class="form-label">Quantity</label>
+                    <input class="form-control" asp-for="Invoice.Quantity" id="quantityInput" oninput="updateTotalPrice()" readonly/>
+                </div>
+
+                <div class="col-lg-2 col-sm-4">
+                    <label class="form-label">Unit Price</label>
+                    <input class="form-control" asp-for="Invoice.UnitPrice" id="unitPriceInput" oninput="updateTotalPrice()" readonly/>
+                </div>
+
+                <div class="col-lg-2 col-sm-4">
+                    <label class="form-label">Total Price</label>
+                    <input class="form-control" disabled id="totalPriceInput" />
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <a class="btn btn-outline-primary" asp-page="/Invoices/Index" role="button"> Close </a>
+
+</form>
+
+<script>
+    function updateTotalPrice(){
+        let quantity = document.getElementById("quantityInput").value;
+        // let unitPrice = document.getElementById("unitPriceInput").value;
+        let unitPrice = parseFloat(document.getElementById("unitPriceInput").value.replace(",", "."));
+        if(isNaN(quantity) || isNaN(unitPrice)){
+            document.getElementById("totalPriceInput").value="0";
+        } else {
+            let totalPrice = quantity * unitPrice;
+            document.getElementById("totalPriceInput").value=totalPrice;
+        }
+    }
+
+    updateTotalPrice();
+
+</script>

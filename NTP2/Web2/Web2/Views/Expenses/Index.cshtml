@@ -1,0 +1,29 @@
+﻿
+@model IEnumerable<Web2.Models.Expense>
+<h1>My Expenses</h1>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="table-light">
+            <tr>
+                <th>Description</th>
+                <th>Amount     </th>
+                <th>Category   </th>
+                <th>Date       </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var expense in Model)
+            {
+                <tr>
+                    <td>@expense.Description</td>
+                    <td>@expense.Amount</td>
+                    <td>@expense.Category</td>
+                    <td>@expense.Date.ToShortDateString()</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
